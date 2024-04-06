@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 
 const TodoList = () => {
-    const [username, setUsername] = useState("");
-    const [todoList, setTodoList] = useState([]);
+    const [username, setUsername] = useState("")
+    const [todoList, setTodoList] = useState([])
+    const [newTodo, setNewTodo] = useState("")
 
     const deleteUser = () => {
         console.log("Delete this user", username);
@@ -34,6 +35,7 @@ const TodoList = () => {
 
     return (
         <div>
+            <div>
             <input
                 value={username}
                 onChange={e => setUsername(e.target.value)}
@@ -41,18 +43,24 @@ const TodoList = () => {
                 onKeyDown={e => {
                     if (e.key === "Enter") {
                         setUsername(e.target.value);
-                        fetchTodoList(e.target.value); // Fetch todo list directly after updating username
+                        fetchTodoList(e.target.value); 
                     }
                 }}
             />
             <button onClick={deleteUser}>Delete User</button>
-            {/* <ul>
-            {todoList.todos.map((todo) => (
+            </div>
+
+            <div>
+
+            </div>
+         
+            <ul>
+            {todoList !== undefined && todoList.map((todo) => (
                 <li key={todo.id}>
-                {todo.label} - {todo.is_done ? "Done" : "Not Done"}
+                    {todo.label}
                 </li>
             ))}
-            </ul> */}
+            </ul>
         </div>
     );
 };
