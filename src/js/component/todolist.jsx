@@ -9,7 +9,7 @@ const TodoList = () => {
         if (username !== "") {
             fetch(`https://playground.4geeks.com/todo/users/${username}`, {
                 method: "POST",
-                body: JSON.stringify(username),
+                // body: JSON.stringify(username),
                 headers: {
                     "Content-Type": "application/json"
                 }
@@ -141,7 +141,8 @@ const TodoList = () => {
     };
 
     return (
-        <div>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            {username ? <h2>{`${username}'s To Do List`}</h2> : <h2>My To Do List</h2>}
             <div>
             <input
                 value={username}
@@ -149,13 +150,15 @@ const TodoList = () => {
                 placeholder="Please enter your desired username"
                 onKeyDown={e => {
                     if (e.key === "Enter") {
-                        setUsername(e.target.value);
+                        // setUsername(e.target.value);
                         fetchTodoList(e.target.value); 
                         createUser(e.target.value);
                     }
+                    
                 }}
+                style={{ width: '265px' }}
             />
-            <button onClick={deleteUser}>Delete User</button>
+            
             </div>
             <div>
                 <input
@@ -181,6 +184,7 @@ const TodoList = () => {
                 </li>
             ))}
             </ul>
+            <button onClick={deleteUser}>Delete User & Tasks</button>
         </div>
     );
 };
